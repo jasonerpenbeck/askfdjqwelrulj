@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Sign Up For Test App</title>
+
+    <!-- 3rd Party CSS-->
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/sweetalert.css">
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/custom.css">
+
+
+    <!-- 3rd Party JavaScript -->
+    <script src="./src/jquery.min.js"></script>
+    <script src="./src/bootstrap.min.js"></script>
+    <script src="./src/sweetalert.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./src/code.js"></script>
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
+
+
+
+      </div>
+    </div>
+  </div>
+
+   <script>
+    $(document).ready(function() {
+      var activateHandler = function(results) {
+        console.log(results);
+        if(results.message !== 'success') {
+          // Re-enable button
+          swal('Hmmm.  Something is wrong with your activation code.  Please contact info@roidna.com.');              
+        } else {
+          swal('All set.  Thanks for signing up. :)');        
+        }
+      };
+
+      var getCodeFromURL = function() {
+        var paramStr = "?code=";
+        var paramIndex = window.location.href.indexOf(paramStr) + paramStr.length;
+        return  window.location.href.slice(paramIndex);
+      };
+
+      var activateUserRequest = function(callback) {
+
+        var params = {code: getCodeFromURL()};
+        $.ajax({
+          url : '../api/activate',
+          type: 'PUT',
+          data : params,
+          success:function(results) {
+            callback(results);
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            console.log('Sorry, but we could finish this request.');
+          }
+        });
+      };
+
+      activateUserRequest(activateHandler);     
+    });
+
+  </script>
+
+  </body>
+</html>

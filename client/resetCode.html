@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1">
+    <title>Sign Up For Test App</title>
+
+    <!-- 3rd Party CSS-->
+    <link rel="stylesheet" href="./styles/bootstrap.min.css">
+    <link rel="stylesheet" href="./styles/sweetalert.css">
+   
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./styles/custom.css">
+
+
+    <!-- 3rd Party JavaScript -->
+    <script src="./src/jquery.min.js"></script>
+    <script src="./src/bootstrap.min.js"></script>
+    <script src="./src/sweetalert.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="./src/code.js"></script>
+  </head>
+  <body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 text-center">
+
+        <div class="input-container" id="form-reset-code">
+          <form id="reset-pw-form" value="" name="reset" method="POST" action="">
+            <p class="form-header">Reset your password</p>
+            <p class="input-field"><input placeholder="email" value="" required name="email" type="email"></p>
+            <p><button class="btn" id='submit-button'>Enter Email</button></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+   <script>
+    $(document).ready(function() {
+      addListeners(); 
+    
+      $('div.input-container').fadeIn("slow", function() {
+        // Animation complete
+      });
+    });
+
+  </script>
+
+  </body>
+</html>
