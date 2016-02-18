@@ -1,2 +1,0 @@
-{"email":"jason@stand.tc","salt":"$2a$08$Z/C.zkwF.gAPDsynFXvox.","password":"$2a$08$Z/C.zkwF.gAPDsynFXvox.9CGT3w8kbHm1dnvzpq/n720HEKQ77vC","active":1,"_id":"UQvdgKWy3aAoFoCY"}
-{"email":"jason@stand.tc","salt":"$2a$08$9GjI70DldIVijY7hC/C0xO","password":"$2a$08$9GjI70DldIVijY7hC/C0xOqSR5Evb4nCajqw7nQuTWH1/KXYjuRom","active":1,"_id":"UQvdgKWy3aAoFoCY"}
