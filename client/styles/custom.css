@@ -5,11 +5,11 @@ body {
 
 .input-container {
   padding: 10px;
-  border: 1px white solid;
   min-height: 100%;
   display: none;
   margin-left: 5px;
   margin-right: 5px;
+  background-color: #BD916B;
 }
 
 @media (min-width: 768px) {
@@ -65,4 +65,8 @@ body {
     width: 90%;
     height: 36px;
     font-size: 24px;
+}
+
+.fb-auth {
+  padding: 10px;
 }

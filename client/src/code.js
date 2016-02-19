@@ -20,7 +20,6 @@ var addListeners = function() {
     resetPasswordRequest(postData, resetPasswordHandler);
   });
 
-
   $('body').on('submit', '#sign-in-form', function(e) {
     e.preventDefault();
     $('#submit-button').attr({disabled: true});
@@ -28,7 +27,7 @@ var addListeners = function() {
     authRequest(postData, authHandler);
   });
 
-  // Listener to swap views from sign in to reset password
+  // Listener to swap views from sign up to sign in
   $('body').on('click touchend', '#sign-in-link', function(e) {
     e.preventDefault();
     $('#form-sign-up').fadeOut('slow', function() {
@@ -42,6 +41,23 @@ var addListeners = function() {
     $('#form-sign-in').fadeOut('slow', function() {
       $('#form-reset-pw').fadeIn('slow');
     });
+  });
+
+  // Start Twitter Auth
+  $('body').on('click touchend', '.tw-auth-button', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      url : '../api/twitter/getToken',
+      type: 'GET',
+      success:function(results) {
+        console.log(results);
+        window.location.replace(results.data.redirectURL);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log('Sorry, but we could finish this request.');
+      }
+    });    
   });
 
   var signUpHandler = function(results) {
