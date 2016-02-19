@@ -29,6 +29,7 @@ app.post('/api/auth', authUser.auth);
 app.post('/api/resetCode/new', changePassword.getResetCode);
 app.put('/api/activate', addUser.activate);
 app.put('/api/changePassword', changePassword.changePassword);
+app.get('/api/twitter/getToken', addUser.getTwitterRequestToken);
 
 // Client Side Routes
 app.get('/signup', function(req, res) {

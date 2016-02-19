@@ -1,12 +1,16 @@
 var uuid = require('node-uuid');
 var _ = require('lodash');
+var twitterAPI = require('node-twitter-api');
+
+var twitter = new twitterAPI({
+  consumerKey: 'yrbZG2XOKCgDebGinFDUI4JsW',
+  consumerSecret: 'LmiJnLoAvPlIBDX1IpIc1lVYjs2nSGxBAxKj9qtCXdwirDN1zO',
+  callback: 'http://127.0.0.1:5000'
+});
 
 var db = require('./db.js');
 var send = require('./sendMessage.js');
 var util = require('./util.js');
-
-// Facebook App ID: 1099780376720899
-// Twitter Key: yrbZG2XOKCgDebGinFDUI4JsW
 
 /**
  * Receives POST requests from /api/users/new
@@ -190,7 +194,28 @@ var activateUser = function(err, errMessage, res, userDetails, callback) {
   });
 };
 
+/**
+ * Get request token from Twitter API
+ *
+ * @function
+ * @param {object} res Response Object
+ * @param {string} req.body.code Activation Code
+ */
+var getTwitterRequestToken = function(req, res) {
+  twitter.getRequestToken(function(error, requestToken, requestTokenSecret, results){
+    if (error) {
+      console.log("Error getting OAuth request token : " + error);
+    } else {
+      console.log(results);
+      var twRedirect = 'https://twitter.com/oauth/authenticate?oauth_token=' + requestToken;
+      util.finalizeResponse(null, null, res, {redirectURL: twRedirect});
+      //store token and tokenSecret somewhere, you'll need them later; redirect user 
+    }
+  });
+};
+
 module.exports = {
   add: add,
-  activate: activate
+  activate: activate,
+  getTwitterRequestToken: getTwitterRequestToken
 };
